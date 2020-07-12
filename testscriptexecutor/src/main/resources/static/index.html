@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>FirstPage</title>
+    <link rel="stylesheet" href="src/main/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="src/main/assets/css/styles.css">
+    <link rel="stylesheet" href="chosen.min.css">
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="chosen.jquery.min.js"></script>
+<style>
+
+     .reveal-if-active {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        font-size: 13px;
+        -webkit-transform: scale(0.8);
+                transform: scale(0.8);
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+    .reveal-if-active label {
+        display: block;
+        margin: 0 0 3px 0;
+    }
+    .reveal-if-active input[type="text"] {
+        width: 100%;
+    }
+    input[type="radio"]:checked ~ .reveal-if-active, input[type="checkbox"]:checked ~ .reveal-if-active {
+        opacity: 1;
+        max-height: 100px;
+        padding: 10px 20px;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        overflow: visible;
+    }
+    form {
+        max-width: 500px;
+        margin: 20px auto;
+    }
+    form > div {
+        margin: 0 0 20px 0;
+    }
+    form > div label {
+        font-weight: bold;
+    }
+    form > div > div {
+        padding: 5px;
+    }
+    form > h4 {
+        color: white;
+    }
+    body {
+        font-size: 15px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+</style>
+    
+<script>
+    var FormStuff = {
+    init: function() {
+        this.applyConditionalRequired();
+        this.bindUIActions();
+    },
+    bindUIActions: function() {
+        $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
+    },
+    applyConditionalRequired: function() {
+        $(".require-if-active").each(function() 
+        {
+            var el = $(this);
+            if ($(el.data("require-pair")).is(":checked")) 
+            {
+                el.prop("required", true);
+            } else 
+            {
+                el.prop("required", false);
+            }
+        });   
+    }
+    };
+    FormStuff.init();
+</script>
+</head>
+
+<body class="page-holder bg-cover" style="background-image: url(https://ztech.io/wp-content/uploads/2020/06/headerphoto3.gif)" ></body>> 
+<div class="home-header" style="color:white"> 
+
+    <h1 class="text-center">
+        <p style="text-align:center; height:5px">Z'Commander</p>
+    </h1>
+    <h3 class="text-center">
+        <p style="text-align:center; height:5px">You command, We execute</p>
+    </h3>
+
+    <!-- User can select the test case -->
+    <form method="post" action="#">
+        <h4>Select a value</h4>
+        <div>
+        <div>
+            <input type="radio" name="choice-testcase" id="choice-all-test-case" required>
+            <label for="choice-all-test-case">Run All Test Case</label>
+        </div>
+
+        <div>
+          <input type="radio" name="choice-testcase" id="choice-group-name" required>
+            <label for="choice-group-name">Run By Group Name</label>
+            <div class="reveal-if-active">
+        <!-- This is to select options from the drop down menu -->   
+                <select id="mselect1" multiple="" style="width: 500px;" >
+                    <option>Registration</option>
+                    <option>Login</option>
+                    <option>ForgotPassword</option>
+                    <option>ForgotUser</option>
+                    <option>Dashboard</option>
+                    <option>Search</option>
+                    <option>AddToCart</option>
+                    <option>CheckOut</option>
+                    <option>CancelOrder</option>
+                    <option>WishList</option>
+                </select>
+
+
+                <!-- <label for="group-name">
+                <input type="checkbox" name="group-name" id="group-name">Login</label>
+                <label for="group-name">
+                <input type="checkbox" name="group-name" id="group-name">Forgot-Password</label> -->
+            </div>
+        </div>
+          
+        <div>
+          <input type="radio" name="choice-testcase" id="choice-group-name" required>
+            <label for="choice-group-name">Run By Test Case Name</label>
+            <div class="reveal-if-active">
+         <!-- This is to select options from the drop down menu -->
+                <select id="mselect2" multiple="" style="width: 500px;">
+                    <option>PRJ_Reg_TC001</option>
+                    <option>PRJ_Login_TC001</option>
+                    <option>PRJ_Login_TC002</option>
+                    <option>PRJ_Login_TC003</option>
+                    <option>PRJ_DASHBOARD_TC001</option>
+                    <option>PRJ_SEARCH_TC001</option>
+                    <option>PRJ_AddToCart_TC001</option>
+                    <option>PRJ_AddToCart_TC002</option>
+                    <option>PRJ_AddToCart_TC003</option>
+                    <option>PRJ_AddToCart_TC004</option>
+                </select>
+
+                <!-- <label for="test-name">
+                <input type="checkbox" name="test-name" id="test-name">Login_TC001</label>
+                <label for="test-name">
+                <input type="checkbox" name="test-name" id="test-name">Forgot_Password_TC001</label> -->
+            </div>
+        </div>
+        
+    </form>
+
+    <!-- User can select the environment -->
+    <h4>Select Environment</h4>
+        <div>
+            <div>
+                    <input type="radio" name='select env' id="formCheck-1" value="DEV">
+                    <label for="formCheck-2">DEV</label> <br>
+                    <input type="radio" name='select env' id="formCheck-2" value="TST">
+                    <label for="formCheck-2">TST</label> <br>
+                    <input type="radio" name='select env' id="formCheck-3" value="STG">
+                    <label for="formCheck-2">STG</label> 
+            </div>
+        </div>
+     
+    <!-- User can select the browser -->    
+    <h4>Select Browser</h4>
+        <div>
+            <div>
+                <input class="form-check-input" type="checkbox" id="formCheck-6">
+                <label class="form-check-label" for="formCheck-6">Chrome</label> <br>
+                <input class="form-check-input" type="checkbox" id="formCheck-7">
+                <label class="form-check-label" for="formCheck-7">Firefox</label> <br>
+                <input class="form-check-input" type="checkbox" id="formCheck-8">
+                <label class="form-check-label" for="formCheck-8">Safari</label> <br>
+                <input class="form-check-input" type="checkbox" id="formCheck-9">
+                <label class="form-check-label" for="formCheck-9">Interner Explorer</label> <br>
+                <input class="form-check-input" type="checkbox" id="formCheck-10">
+                <label class="form-check-label" for="formCheck-10">Edge</label>
+            </div>
+        </div>
+
+    <!-- User can click on execute button -->
+    <button class="btn" style="padding: 9px;padding-left: 24px;padding-bottom: 6px;padding-right: 26px;padding-top: 4px;margin: 29px;height: 36px;margin-top: 51px;margin-right: 45px;margin-left: 592px;">
+        EXECUTE</button>
+</div>
+    <script src="src/main/assets/js/jquery.min.js"></script>
+    <script src="src/main/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="src/main/assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+
+ <!--Jquery Dropdown selector-->   
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#mselect1').chosen();
+            $('#mselect2').chosen();
+            
+        })
+
+        
+
+
+
+    </script>
+
+
+</body>
+</html>
